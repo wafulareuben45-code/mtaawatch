@@ -1,0 +1,14 @@
+{
+  "name": "mtw-sendgrid-lambda",
+  "version": "1.0.0",
+  "description": "Lambda that sends weekly status emails for MTW reports via SendGrid",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.400.0",
+    "@aws-sdk/lib-dynamodb": "^3.400.0",
+    "@sendgrid/mail": "^7.9.0"
+  }
+}

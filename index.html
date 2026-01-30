@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report an Issue</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+textarea, input, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  form {
+    padding: 15px;
+  }
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      padding: 20px;
+    }
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+    .feedback {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .back-button:hover {
+      background: #5a6268;
+      transform: scale(1.05);
+    }
+    .limit-warning {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #856404;
+      padding: 12px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      display: none;
+    }
+    .limit-warning.show {
+      display: block;
+    }
+    .hidden {
+      display: none;
+    }
+    .department-section {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 5px;
+      border-left: 4px solid #667eea;
+    }
+    .department-section label {
+      display: block;
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+    .department-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .radio-option {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: white;
+    }
+    .radio-option:hover {
+      border-color: #667eea;
+      background: #f0f7ff;
+    }
+    .radio-option input[type="radio"] {
+      width: auto;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .radio-option label {
+      margin-top: 0;
+      margin-bottom: 0;
+      cursor: pointer;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      font-weight: normal;
+    }
+    .department-icon {
+      font-size: 20px;
+      margin-right: 8px;
+    }
+    .radio-option input[type="radio"]:checked + label {
+      font-weight: bold;
+      color: #667eea;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <a href="main.html" class="back-button">←  Home</a>
+    <h2>Report an Issue</h2>
+    <div id="limitWarning" class="limit-warning"></div>
+    <form id="reportForm" action="https://formspree.io/f/mzdgrldq" method="POST">
+      <label>Email:</label>
+      <input type="email" name="email" placeholder="Enter your email" required>
+
+      <label>Title:</label>
+      <input type="text" name="title" placeholder="Enter issue title" required>
+
+      <label>Description:</label>
+      <textarea name="description" rows="4" placeholder="Describe the issue" required></textarea>
+
+      <label>Location:</label>
+      <input type="text" name="location" placeholder="Where did this occur?">
+
+      <div class="department-section">
+        <label>Department (Select which department this report is for):</label>
+        <div class="department-options">
+          <div class="radio-option">
+            <input type="radio" id="dept-security" name="department" value="security" required>
+            <label for="dept-security">
+              <span class="department-icon">🔒</span>
+              <span>Security</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="dept-hr" name="department" value="hr">
+            <label for="dept-hr">
+              <span class="department-icon">👥</span>
+              <span>HR (Human Resources)</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="dept-environment" name="department" value="environment">
+            <label for="dept-environment">
+              <span class="department-icon">🌍</span>
+              <span>Environment</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <label for="action">Action:</label>
+      <select id="action" name="action" required>
+        <option value="report">Submit New Report</option>
+        <option value="withdraw">Withdraw Existing Report</option>
+      </select>
+
+      <div id="withdrawFields" class="hidden">
+        <label for="reportId">Report ID (to withdraw):</label>
+        <input type="text" id="reportId" name="reportId" placeholder="Enter the report ID to withdraw">
+      </div>
+
+      <button type="submit" id="submitBtn">Send Report</button>
+    </form>
+    <p id="feedback" class="feedback"></p>
+  </div>
+
+  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+  <script>
+    (function(){
+      try { emailjs.init('YOUR_EMAILJS_USER_ID'); } catch(e) { console.warn('EmailJS not initialized'); }
+    })();
+  </script>
+  <script>
+    const form = document.getElementById("reportForm");
+    const feedback = document.getElementById("feedback");
+    const limitWarning = document.getElementById("limitWarning");
+    const actionSelect = document.getElementById("action");
+    const withdrawFields = document.getElementById("withdrawFields");
+    const submitBtn = document.getElementById("submitBtn");
+    const reportIdInput = document.getElementById("reportId");
+    const REPORT_COUNT_KEY = 'mtw_report_count';
+    const DAILY_LIMIT = 5; // Maximum 5 reports per day
+    const REPORT_HISTORY_KEY = 'mtw_report_history';
+
+    // Toggle withdraw fields based on action selection
+    actionSelect.addEventListener("change", function() {
+      if (this.value === "withdraw") {
+        withdrawFields.classList.remove("hidden");
+        reportIdInput.required = true;
+        submitBtn.textContent = "Withdraw Report";
+      } else {
+        withdrawFields.classList.add("hidden");
+        reportIdInput.required = false;
+        submitBtn.textContent = "Send Report";
+      }
+    });
+
+    // Check daily limit on page load
+    function checkDailyLimit() {
+      const today = new Date().toDateString();
+      const history = JSON.parse(localStorage.getItem(REPORT_HISTORY_KEY) || '{}');
+      const todayReports = history[today] || 0;
+
+      if (todayReports >= DAILY_LIMIT) {
+        form.style.display = 'none';
+        feedback.innerText = '';
+        limitWarning.innerHTML = `⏱️ You have reached the daily limit of ${DAILY_LIMIT} reports. Please try again tomorrow.`;
+        limitWarning.classList.add('show');
+      } else {
+        form.style.display = 'block';
+        limitWarning.classList.remove('show');
+        if (todayReports > 0) {
+          feedback.innerHTML = `📊 You have submitted <strong>${todayReports}/${DAILY_LIMIT}</strong> reports today.`;
+          feedback.className = 'feedback';
+          feedback.style.color = '#0066cc';
+        }
+      }
+    }
+
+    // Call on page load
+    checkDailyLimit();
+
+    // Email helper - send a receipt to the reporter (EmailJS)
+    function sendReportReceiptEmail(reportData) {
+      if (!window.emailjs) return;
+      const serviceId = 'YOUR_EMAILJS_SERVICE_ID';
+      const templateId = 'YOUR_EMAILJS_REPORT_RECEIPT_TEMPLATE_ID';
+      const params = {
+        to_email: reportData.email,
+        to_name: reportData.email,
+        report_title: reportData.title,
+        report_description: reportData.description,
+        report_department: reportData.department,
+        report_date: new Date(reportData.timestamp).toLocaleString()
+      };
+      emailjs.send(serviceId, templateId, params)
+        .then(() => console.log('Receipt email sent to', reportData.email))
+        .catch(err => console.warn('EmailJS receipt error', err));
+    }
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const action = actionSelect.value;
+
+      // Handle withdrawal
+      if (action === "withdraw") {
+        const reportId = reportIdInput.value.trim();
+        
+        if (!reportId) {
+          feedback.innerText = "❌ Please enter a valid report ID to withdraw.";
+          feedback.className = "feedback error";
+          return;
+        }
+
+        if (!confirm(`Are you sure you want to withdraw report ID: ${reportId}? This action cannot be undone.`)) {
+          return;
+        }
+
+        try {
+          let response = await fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            feedback.innerText = "✅ Report withdrawn successfully!";
+            feedback.className = "feedback success";
+            form.reset();
+            withdrawFields.classList.add("hidden");
+            submitBtn.textContent = "Send Report";
+
+            // Redirect to main page after 2 seconds
+            setTimeout(() => {
+              window.location.href = 'main.html';
+            }, 2000);
+          } else {
+            feedback.innerText = "❌ Failed to withdraw report. Please check the report ID and try again.";
+            feedback.className = "feedback error";
+          }
+        } catch (error) {
+          feedback.innerText = "❌ Network error. Please check your connection.";
+          feedback.className = "feedback error";
+        }
+        return;
+      }
+
+      // Handle regular report submission
+      // Check limit again before submission
+      const today = new Date().toDateString();
+      const history = JSON.parse(localStorage.getItem(REPORT_HISTORY_KEY) || '{}');
+      const todayReports = history[today] || 0;
+
+      if (todayReports >= DAILY_LIMIT) {
+        feedback.innerText = "❌ Daily report limit reached. Please try again tomorrow.";
+        feedback.className = "feedback error";
+        return;
+      }
+
+      try {
+        let response = await fetch(form.action, {
+          method: form.method,
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          // Increment the report counter in localStorage
+          let count = parseInt(localStorage.getItem(REPORT_COUNT_KEY) || '0');
+          count++;
+          localStorage.setItem(REPORT_COUNT_KEY, count);
+
+          // Update daily report history
+          const today = new Date().toDateString();
+          const history = JSON.parse(localStorage.getItem(REPORT_HISTORY_KEY) || '{}');
+          history[today] = (history[today] || 0) + 1;
+          localStorage.setItem(REPORT_HISTORY_KEY, history);
+
+          // Save report data for admin panel
+          const reportData = {
+            email: document.querySelector('input[name="email"]').value,
+            title: document.querySelector('input[name="title"]').value,
+            description: document.querySelector('textarea[name="description"]').value,
+            location: document.querySelector('input[name="location"]').value,
+            department: document.querySelector('input[name="department"]:checked').value,
+            action: 'report'
+          };
+          
+          if (window.parent !== window && window.parent.saveReport) {
+            window.parent.saveReport(reportData);
+          } else {
+            // Save locally if parent window doesn't have the function
+            const REPORTS_KEY = 'mtw_reports';
+            const reports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+            reportData.timestamp = new Date().toISOString();
+            reportData.viewed = false;
+            reportData.status = 'pending';
+            reports.push(reportData);
+            localStorage.setItem(REPORTS_KEY, JSON.stringify(reports));
+            // Send immediate receipt email (EmailJS) - non-blocking
+            try { sendReportReceiptEmail(reportData); } catch(e) { console.warn('Receipt email error', e); }
+          }
+
+          feedback.innerText = "✅ Report submitted successfully!";
+          feedback.className = "feedback success";
+          form.reset();
+
+          // Redirect to main page after 2 seconds
+          setTimeout(() => {
+            window.location.href = 'main.html';
+          }, 2000);
+        } else {
+          feedback.innerText = "❌ Something went wrong. Please try again.";
+          feedback.className = "feedback error";
+        }
+      } catch (error) {
+        feedback.innerText = "❌ Network error. Please check your connection.";
+        feedback.className = "feedback error";
+      }
+    });
+  </script>
+</body>
+</html>

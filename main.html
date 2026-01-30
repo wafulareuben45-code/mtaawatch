@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTW - Main Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 60px 40px;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 36px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+      border: 2px solid #667eea;
+    }
+
+    .btn-secondary:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .feature-card {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .feature-card h3 {
+      color: #667eea;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .feature-card p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .upload-section {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid #e0e0e0;
+    }
+
+    .upload-section h3 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .upload-area {
+      border: 2px dashed #667eea;
+      border-radius: 8px;
+      padding: 30px;
+      background: #f9f9f9;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    .upload-area:hover {
+      background: #f0f0f0;
+      border-color: #764ba2;
+    }
+
+    .upload-area.dragover {
+      background: #e8e8ff;
+      border-color: #764ba2;
+    }
+
+    .upload-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .upload-text {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    #photoPreview {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #photoPreview img {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .photo-info {
+      background: #e8f5e9;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin-top: 10px;
+      color: #2e7d32;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .btn-remove {
+      background: #ff6b6b;
+      color: white;
+      padding: 8px 16px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .btn-remove:hover {
+      background: #ff5252;
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    .customer-care {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid #e0e0e0;
+    }
+
+    .customer-care h3 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .contact-card {
+      background: #f0f7ff;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+      margin-bottom: 15px;
+    }
+
+    .contact-label {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .contact-value {
+      color: #333;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .contact-value a {
+      color: #667eea;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-value a:hover {
+      color: #764ba2;
+      text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .trademark {
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    .stats-section {
+      margin-top: 40px;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 8px;
+      color: white;
+    }
+
+    .stat-item {
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .reset-counter {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 6px 12px;
+      font-size: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .reset-counter:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: white;
+    }
+
+    .upload-text-small {
+      color: #999;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      width: 90%;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal h2 {
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .form-buttons button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-toggle {
+      background: #f0f0f0;
+      color: #333;
+      border: 2px solid #667eea;
+    }
+
+    .btn-toggle:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .modal-message {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .user-info {
+      background: #e8f5e9;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #2e7d32;
+      font-size: 14px;
+    }
+
+    .logout-btn {
+      background: #ff6b6b;
+      color: white;
+      padding: 6px 12px;
+      font-size: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: #ff5252;
+    }
+
+    .error-message {
+      color: #d32f2f;
+      font-size: 13px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .success-message {
+      color: #2e7d32;
+      font-size: 13px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .admin-modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+    }
+
+    .admin-modal.show {
+      display: flex;
+    }
+
+    .admin-modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 700px;
+      width: 90%;
+      margin: 20px auto;
+      animation: slideIn 0.3s ease;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 15px;
+    }
+
+    .admin-header h2 {
+      color: #333;
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .close-admin-btn {
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .close-admin-btn:hover {
+      background: #ff5252;
+    }
+
+    .reports-list {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .report-item {
+      background: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-left: 4px solid #667eea;
+      border-radius: 6px;
+    }
+
+    .report-item h4 {
+      color: #333;
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+
+    .report-detail {
+      color: #666;
+      font-size: 13px;
+      margin: 5px 0;
+      line-height: 1.5;
+    }
+
+    .report-detail strong {
+      color: #333;
+    }
+
+    .report-action {
+      color: #667eea;
+      font-size: 12px;
+      margin-top: 10px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .report-action:hover {
+      color: #764ba2;
+    }
+
+    .admin-login-form {
+      margin-bottom: 20px;
+    }
+
+    .no-reports {
+      text-align: center;
+      padding: 40px 20px;
+      color: #999;
+      font-size: 16px;
+    }
+
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .admin-stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .admin-stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .admin-stat-label {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .user-greeting-hidden {
+      display: none;
+      background: #e8f5e9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .admin-dashboard-hidden {
+      display: none;
+    }
+
+    .logout-admin-btn {
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    /* Department Dashboard Styles */
+    .department-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .department-tab {
+      padding: 10px 20px;
+      background: #f0f0f0;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #333;
+      transition: all 0.3s ease;
+      border-bottom: none;
+    }
+
+    .department-tab:hover {
+      background: #e8e8ff;
+      border-color: #667eea;
+    }
+
+    .department-tab.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-color: #667eea;
+    }
+
+    .department-content {
+      display: none;
+    }
+
+    .department-content.active {
+      display: block;
+    }
+
+    .department-header {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .department-header h3 {
+      color: #333;
+      margin: 0 0 10px 0;
+      font-size: 18px;
+    }
+
+    .department-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .department-stat {
+      background: #f0f7ff;
+      padding: 12px;
+      border-radius: 6px;
+      text-align: center;
+      border-left: 4px solid #667eea;
+    }
+
+    .department-stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .department-stat-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .assign-department-btn {
+      background: #667eea;
+      color: white;
+      padding: 6px 12px;
+      font-size: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .assign-department-btn:hover {
+      background: #764ba2;
+    }
+
+    .department-label {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .dept-security {
+      background: #ffe8e8;
+      color: #c41c3b;
+      border: 1px solid #c41c3b;
+    }
+
+    .dept-hr {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #2e7d32;
+    }
+
+    .dept-environment {
+      background: #e3f2fd;
+      color: #1565c0;
+      border: 1px solid #1565c0;
+    }
+
+    .unassigned-label {
+      background: #f5f5f5;
+      color: #999;
+      border: 1px solid #ccc;
+    }
+
+    /* Status Badge Styles */
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .status-pending {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffc107;
+    }
+
+    .status-in-progress {
+      background: #cce5ff;
+      color: #004085;
+      border: 1px solid #0066ff;
+    }
+
+    .status-resolved {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #28a745;
+    }
+
+    .status-closed {
+      background: #e2e3e5;
+      color: #383d41;
+      border: 1px solid #d6d8db;
+    }
+
+    .status-selector {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .status-btn {
+      padding: 6px 12px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .status-btn:hover {
+      border-color: #667eea;
+      color: #667eea;
+    }
+
+    .status-btn.pending {
+      color: #856404;
+      border-color: #ffc107;
+    }
+
+    .status-btn.in-progress {
+      color: #004085;
+      border-color: #0066ff;
+    }
+
+    .status-btn.resolved {
+      color: #155724;
+      border-color: #28a745;
+    }
+
+    .status-btn.closed {
+      color: #383d41;
+      border-color: #d6d8db;
+    }
+
+    .status-section {
+      background: #f9f9f9;
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    .status-section-label {
+      font-size: 12px;
+      color: #666;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .button-group-margin {
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <nav> 
+    <ul> 
+      <li>
+       <a href="about.html">About</a>
+      </li>
+      </ul>
+  </nav>
+  <!-- Admin Panel Modal -->
+  <div id="adminModal" class="admin-modal">
+    <div class="admin-modal-content">
+      <div class="admin-header">
+        <h2>📊 Admin Panel - Department Reports</h2>
+        <button class="close-admin-btn" onclick="closeAdminPanel()">Close</button>
+      </div>
+
+      <div id="adminLoginForm" class="admin-login-form">
+        <div class="modal-message">Enter admin password to view reports</div>
+        <div id="adminErrorMessage" class="error-message"></div>
+        <div class="form-group">
+          <label for="adminPassword">Admin Password:</label>
+          <input type="password" id="adminPassword" placeholder="Enter admin password">
+        </div>
+        <button type="button" class="btn-submit full-width" onclick="authenticateAdmin()">Access Reports</button>
+      </div>
+
+      <div id="adminDashboard" class="admin-dashboard-hidden">
+        <!-- Department Tabs -->
+        <div class="department-tabs">
+          <button class="department-tab active" onclick="switchDepartment('all')">🏢 All Reports</button>
+          <button class="department-tab" onclick="switchDepartment('security')">🔒 Security</button>
+          <button class="department-tab" onclick="switchDepartment('hr')">👥 HR</button>
+          <button class="department-tab" onclick="switchDepartment('environment')">🌍 Environment</button>
+        </div>
+
+        <!-- All Reports View -->
+        <div id="allReports" class="department-content active">
+          <div class="admin-stats">
+            <div class="admin-stat-card">
+              <div class="admin-stat-number" id="totalReports">0</div>
+              <div class="admin-stat-label">Total Reports</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-number" id="newReports">0</div>
+              <div class="admin-stat-label">New Reports</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-number" id="unassignedReports">0</div>
+              <div class="admin-stat-label">Unassigned</div>
+            </div>
+          </div>
+          <div class="reports-list" id="reportsList">
+            <div class="no-reports">No reports submitted yet.</div>
+          </div>
+        </div>
+
+        <!-- Security Department View -->
+        <div id="securityDept" class="department-content">
+          <div class="department-header">
+            <h3>🔒 Security Department</h3>
+            <p>Reports related to security issues and concerns</p>
+          </div>
+          <div class="department-stats">
+            <div class="department-stat">
+              <div class="department-stat-number" id="securityTotal">0</div>
+              <div class="department-stat-label">Total</div>
+            </div>
+            <div class="department-stat">
+              <div class="department-stat-number" id="securityUnreviewed">0</div>
+              <div class="department-stat-label">Unreviewed</div>
+            </div>
+          </div>
+          <div class="reports-list" id="securityReports">
+            <div class="no-reports">No security reports yet.</div>
+          </div>
+        </div>
+
+        <!-- HR Department View -->
+        <div id="hrDept" class="department-content">
+          <div class="department-header">
+            <h3>👥 HR Department</h3>
+            <p>Reports related to human resources and employee matters</p>
+          </div>
+          <div class="department-stats">
+            <div class="department-stat">
+              <div class="department-stat-number" id="hrTotal">0</div>
+              <div class="department-stat-label">Total</div>
+            </div>
+            <div class="department-stat">
+              <div class="department-stat-number" id="hrUnreviewed">0</div>
+              <div class="department-stat-label">Unreviewed</div>
+            </div>
+          </div>
+          <div class="reports-list" id="hrReports">
+            <div class="no-reports">No HR reports yet.</div>
+          </div>
+        </div>
+
+        <!-- Environment Department View -->
+        <div id="environmentDept" class="department-content">
+          <div class="department-header">
+            <h3>🌍 Environment Department</h3>
+            <p>Reports related to environmental concerns and sustainability</p>
+          </div>
+          <div class="department-stats">
+            <div class="department-stat">
+              <div class="department-stat-number" id="environmentTotal">0</div>
+              <div class="department-stat-label">Total</div>
+            </div>
+            <div class="department-stat">
+              <div class="department-stat-number" id="environmentUnreviewed">0</div>
+              <div class="department-stat-label">Unreviewed</div>
+            </div>
+          </div>
+          <div class="reports-list" id="environmentReports">
+            <div class="no-reports">No environment reports yet.</div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-remove logout-admin-btn" onclick="handleAdminLogout()">Logout from Admin</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Department Panel Modal (password protected per-department) -->
+  <div id="departmentModal" class="admin-modal">
+    <div class="admin-modal-content">
+      <div class="admin-header">
+        <h2 id="deptTitle">Department Panel</h2>
+        <button class="close-admin-btn" onclick="closeDepartmentPanel()">Close</button>
+      </div>
+
+      <div id="deptLoginForm" class="admin-login-form">
+        <div class="modal-message">Enter department password to view reports</div>
+        <div id="deptErrorMessage" class="error-message"></div>
+        <div class="form-group">
+          <label for="deptPassword">Password:</label>
+          <input type="password" id="deptPassword" placeholder="Enter department password">
+        </div>
+        <button type="button" class="btn-submit full-width" onclick="authenticateDepartment()">Access Department</button>
+      </div>
+
+      <div id="deptDashboard" class="admin-dashboard-hidden">
+        <div class="department-header">
+          <h3 id="deptHeader">Department Reports</h3>
+        </div>
+        <div class="reports-list" id="deptReportsList">
+          <div class="no-reports">No reports for this department yet.</div>
+        </div>
+        <button type="button" class="btn-remove logout-admin-btn" onclick="handleDeptLogout()">Logout from Department</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login/Signup Modal -->
+  <div id="authModal" class="modal show">
+    <div class="modal-content">
+      <h2 id="authTitle">Login</h2>
+      <div id="errorMessage" class="error-message"></div>
+      <div id="successMessage" class="success-message"></div>
+      
+      <!-- Login Form -->
+      <div id="loginForm">
+        <div class="modal-message">Enter your credentials to access your account</div>
+        <div class="form-group">
+          <label for="loginEmail">Email:</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password:</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password">
+        </div>
+        <div class="form-buttons">
+          <button class="btn-submit" onclick="handleLogin()">Login</button>
+          <button class="btn-toggle" onclick="toggleAuthForm()">Sign Up</button>
+        </div>
+      </div>
+
+      <!-- Signup Form -->
+      <div id="signupForm" class="hidden">
+        <div class="modal-message">Create a new account to get started</div>
+        <div class="form-group">
+          <label for="signupName">Full Name:</label>
+          <input type="text" id="signupName" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label for="signupEmail">Email:</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="signupPassword">Password:</label>
+          <input type="password" id="signupPassword" placeholder="Create a password">
+        </div>
+        <div class="form-group">
+          <label for="signupPhone">Phone (Optional):</label>
+          <input type="tel" id="signupPhone" placeholder="Enter your phone number">
+        </div>
+        <div class="form-buttons">
+          <button class="btn-submit" onclick="handleSignup()">Sign Up</button>
+          <button class="btn-toggle" onclick="toggleAuthForm()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Welcome to MtaaWatch</h1>
+    <p class="subtitle">
+      Manage and report issues efficiently. Access our issue reporting system to submit feedback and track problems.
+    </p>
+
+    <div id="userGreeting" class="user-greeting-hidden">
+      <div id="greetingText" class="greeting-text"></div>
+      <button class="logout-btn" onclick="handleLogout()">Logout</button>
+    </div>
+
+    <div class="button-group">
+      <a href="index.html" class="btn btn-primary">Report an Issue</a>
+      <button class="btn btn-secondary" onclick="openAdminPanel()">Admin Panel</button>
+      <button class="btn btn-secondary" onclick="alert('Feature coming soon!')">Documentation</button>
+    </div>
+
+    <div class="button-group button-group-margin">
+      <button class="btn btn-secondary" onclick="openDepartmentPanel('security')">🔒 Security Panel</button>
+      <button class="btn btn-secondary" onclick="openDepartmentPanel('hr')">👥 HR Panel</button>
+      <button class="btn btn-secondary" onclick="openDepartmentPanel('environment')">🌍 Environment Panel</button>
+    </div>
+
+    <div class="stats-section">
+      <div class="stat-item">
+        <div class="stat-number" id="reportCount">0</div>
+        <div class="stat-label">📋 Reports Submitted</div>
+        <button class="reset-counter" onclick="resetCounter()">Reset Counter</button>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feature-card">
+        <h3>📋 Report Issues</h3>
+        <p>Submit detailed issue reports and feedback about our services.</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚡ Quick Process</h3>
+        <p>Fast and simple issue reporting form that takes just moments to complete.</p>
+      </div>
+      <div class="feature-card">
+        <h3>📊 Track Status</h3>
+        <p>Keep up with your submissions and view the status of reported issues.</p>
+      </div>
+    </div>
+
+    <div class="upload-section">
+      <h3>Upload a Photo</h3>
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📷</div>
+        <div class="upload-text">Drag and drop your photo here or click to select</div>
+        <small class="upload-text-small">Supports: JPG, PNG, GIF (Max 5MB)</small>
+      </div>
+      <input type="file" id="fileInput" accept="image/*">
+      
+      <div id="photoPreview">
+        <img id="previewImage" alt="Photo preview">
+        <div class="photo-info">
+          <div>✓ Photo uploaded successfully</div>
+          <div id="fileNameDisplay"></div>
+          <div id="fileSizeDisplay"></div>
+        </div>
+        <button class="btn btn-remove" onclick="removePhoto()">Remove Photo</button>
+      </div>
+    </div>
+
+    <div class="customer-care">
+      <h3>Customer Care</h3>
+      <div class="contact-card">
+        <div class="contact-label">📧 Email Support</div>
+        <div class="contact-value">
+          <a href="mailto:mtaawatch@gmail.com">mtaawatch@gmail.com</a>
+        </div>
+      </div>
+      <div class="footer">
+        <span class="trademark">®</span> 2026 MTW. All rights reserved.
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+  <script>
+    (function(){
+      try { emailjs.init('YOUR_EMAILJS_USER_ID'); } catch(e) { console.warn('EmailJS not initialized'); }
+    })();
+  </script>
+  <script>
+    // Authentication functionality
+    const USERS_KEY = 'mtw_users';
+    const CURRENT_USER_KEY = 'mtw_current_user';
+    const REPORTS_KEY = 'mtw_reports';
+    const ADMIN_PASSWORD_KEY = 'mtw_admin_password';
+    const ADMIN_SESSION_KEY = 'mtw_admin_session';
+    const DEFAULT_ADMIN_PASSWORD = 'Admin@2026'; // Default admin password
+
+    const authModal = document.getElementById('authModal');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const authTitle = document.getElementById('authTitle');
+    const userGreeting = document.getElementById('userGreeting');
+    const greetingText = document.getElementById('greetingText');
+    const errorMessage = document.getElementById('errorMessage');
+    const successMessage = document.getElementById('successMessage');
+    const adminModal = document.getElementById('adminModal');
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    const adminDashboard = document.getElementById('adminDashboard');
+    let currentDepartment = 'all';
+
+    // Department constants
+    const DEPARTMENTS = {
+      security: { name: 'Security', icon: '🔒', color: '#c41c3b' },
+      hr: { name: 'HR', icon: '👥', color: '#2e7d32' },
+      environment: { name: 'Environment', icon: '🌍', color: '#1565c0' }
+    };
+
+    // Initialize admin password on first load
+    function initAdminPassword() {
+      if (!localStorage.getItem(ADMIN_PASSWORD_KEY)) {
+        localStorage.setItem(ADMIN_PASSWORD_KEY, DEFAULT_ADMIN_PASSWORD);
+      }
+    }
+
+    // Initialize department passwords on first load
+    function initDeptPasswords() {
+      const mapping = {
+        security: 'Sec@2026',
+        hr: 'HR@2026',
+        environment: 'Env@2026'
+      };
+      Object.keys(mapping).forEach(d => {
+        const key = 'mtw_dept_password_' + d;
+        if (!localStorage.getItem(key)) localStorage.setItem(key, mapping[d]);
+      });
+    }
+
+    // Initialize authentication on page load
+    function initAuth() {
+      initAdminPassword();
+      initDeptPasswords();
+      const currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
+      
+      if (currentUser) {
+        // User is logged in
+        authModal.classList.remove('show');
+        userGreeting.style.display = 'block';
+        displayUserGreeting(currentUser);
+      } else {
+        // User is not logged in
+        authModal.classList.add('show');
+      }
+    }
+
+    // Toggle between login and signup forms
+    function toggleAuthForm() {
+      clearMessages();
+      if (loginForm.style.display === 'none') {
+        // Show login form
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        authTitle.textContent = 'Login';
+      } else {
+        // Show signup form
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+        authTitle.textContent = 'Sign Up';
+      }
+    }
+
+    // Handle login
+    function handleLogin() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      if (!email || !password) {
+        showError('Please fill in all fields');
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem(USERS_KEY) || '{}');
+      const user = users[email];
+
+      if (!user) {
+        showError('Email not found. Please sign up first.');
+        return;
+      }
+
+      if (user.password !== password) {
+        showError('Incorrect password. Please try again.');
+        return;
+      }
+
+      // Successful login
+      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+      showSuccess('Login successful! Redirecting...');
+      
+      setTimeout(() => {
+        authModal.classList.remove('show');
+        userGreeting.style.display = 'block';
+        displayUserGreeting(user);
+        document.getElementById('loginEmail').value = '';
+        document.getElementById('loginPassword').value = '';
+        clearMessages();
+      }, 1000);
+    }
+
+    // Handle signup
+    function handleSignup() {
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value;
+      const phone = document.getElementById('signupPhone').value.trim();
+
+      if (!name || !email || !password) {
+        showError('Please fill in all required fields');
+        return;
+      }
+
+      if (password.length < 6) {
+        showError('Password must be at least 6 characters');
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem(USERS_KEY) || '{}');
+
+      if (users[email]) {
+        showError('Email already registered. Please login instead.');
+        return;
+      }
+
+      // Create new user
+      const newUser = {
+        name,
+        email,
+        password,
+        phone,
+        createdAt: new Date().toISOString(),
+        reports: []
+      };
+
+      users[email] = newUser;
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(newUser));
+
+      // Send verification email (uses EmailJS). Replace service/template/user IDs in the code below.
+      try {
+        sendVerificationEmail(newUser.email, newUser.name);
+      } catch (err) {
+        console.warn('Verification email not sent:', err);
+      }
+
+      showSuccess('Account created successfully! Welcome ' + name + '!');
+
+      setTimeout(() => {
+        authModal.classList.remove('show');
+        userGreeting.style.display = 'block';
+        displayUserGreeting(newUser);
+        
+        // Clear signup form
+        document.getElementById('signupName').value = '';
+        document.getElementById('signupEmail').value = '';
+        document.getElementById('signupPassword').value = '';
+        document.getElementById('signupPhone').value = '';
+        
+        // Reset to login form
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        authTitle.textContent = 'Login';
+        
+        clearMessages();
+      }, 1000);
+    }
+
+    // Display user greeting
+    function displayUserGreeting(user) {
+      greetingText.innerHTML = `👋 Welcome back, <strong>${user.name}</strong>! Your email: ${user.email}`;
+    }
+
+    // Handle logout
+    function handleLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem(CURRENT_USER_KEY);
+        authModal.classList.add('show');
+        userGreeting.style.display = 'none';
+        
+        // Reset forms
+        document.getElementById('loginEmail').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('signupName').value = '';
+        document.getElementById('signupEmail').value = '';
+        document.getElementById('signupPassword').value = '';
+        document.getElementById('signupPhone').value = '';
+        
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        authTitle.textContent = 'Login';
+        clearMessages();
+      }
+    }
+
+    // Show error message
+    function showError(message) {
+      errorMessage.textContent = '❌ ' + message;
+      errorMessage.style.display = 'block';
+      successMessage.style.display = 'none';
+    }
+
+    // Show success message
+    function showSuccess(message) {
+      successMessage.textContent = '✅ ' + message;
+      successMessage.style.display = 'block';
+      errorMessage.style.display = 'none';
+    }
+
+    // Email helper - sends verification email via EmailJS
+    function sendVerificationEmail(email, name) {
+      if (!window.emailjs) {
+        console.warn('EmailJS not available');
+        return;
+      }
+      const serviceId = 'YOUR_EMAILJS_SERVICE_ID';
+      const templateId = 'YOUR_EMAILJS_VERIFICATION_TEMPLATE_ID';
+      const templateParams = {
+        to_email: email,
+        to_name: name,
+        verification_link: window.location.href // could be used by template
+      };
+      emailjs.send(serviceId, templateId, templateParams)
+        .then(() => console.log('Verification email sent to', email))
+        .catch(err => console.warn('EmailJS send error', err));
+    }
+
+    // Clear messages
+    function clearMessages() {
+      errorMessage.textContent = '';
+      successMessage.textContent = '';
+      errorMessage.style.display = 'none';
+      successMessage.style.display = 'none';
+    }
+
+    // Initialize on page load
+    initAuth();
+
+    // Report counter functionality
+    const REPORT_COUNT_KEY = 'mtw_report_count';
+    const reportCountDisplay = document.getElementById('reportCount');
+
+    // Load and display the report count on page load
+    function loadReportCount() {
+      const count = localStorage.getItem(REPORT_COUNT_KEY) || '0';
+      reportCountDisplay.textContent = count;
+    }
+
+    // Increment the report count
+    function incrementReportCount() {
+      let count = parseInt(localStorage.getItem(REPORT_COUNT_KEY) || '0');
+      count++;
+      localStorage.setItem(REPORT_COUNT_KEY, count);
+      reportCountDisplay.textContent = count;
+    }
+
+    // Reset the counter
+    function resetCounter() {
+      if (confirm('Are you sure you want to reset the report counter?')) {
+        localStorage.setItem(REPORT_COUNT_KEY, '0');
+        reportCountDisplay.textContent = '0';
+      }
+    }
+
+    // Load count when page loads
+    loadReportCount();
+
+    // Check for new report submissions from index.html
+    window.addEventListener('focus', () => {
+      loadReportCount();
+    });
+
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const photoPreview = document.getElementById('photoPreview');
+    const previewImage = document.getElementById('previewImage');
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    const fileSizeDisplay = document.getElementById('fileSizeDisplay');
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+    // Click to upload
+    uploadArea.addEventListener('click', () => fileInput.click());
+
+    // File input change
+    fileInput.addEventListener('change', (e) => handleFileUpload(e.target.files[0]));
+
+    // Drag and drop
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('dragover');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('dragover');
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('dragover');
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        handleFileUpload(files[0]);
+      }
+    });
+
+    function handleFileUpload(file) {
+      if (!file) return;
+
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        alert('Please upload an image file (JPG, PNG, GIF)');
+        return;
+      }
+
+      // Validate file size
+      if (file.size > MAX_FILE_SIZE) {
+        alert('File size must be less than 5MB');
+        return;
+      }
+
+      // Read and display the file
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImage.src = e.target.result;
+        fileNameDisplay.textContent = '📄 ' + file.name;
+        fileSizeDisplay.textContent = '📊 ' + formatFileSize(file.size);
+        photoPreview.style.display = 'block';
+        uploadArea.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removePhoto() {
+      fileInput.value = '';
+      photoPreview.style.display = 'none';
+      uploadArea.style.display = 'block';
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+    }
+
+    // Admin panel functions
+    function openAdminPanel() {
+      adminModal.classList.add('show');
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('adminErrorMessage').textContent = '';
+      adminLoginForm.style.display = 'block';
+      adminDashboard.style.display = 'none';
+    }
+
+    function closeAdminPanel() {
+      adminModal.classList.remove('show');
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+    }
+
+    function authenticateAdmin() {
+      const password = document.getElementById('adminPassword').value;
+      const correctPassword = localStorage.getItem(ADMIN_PASSWORD_KEY);
+
+      if (!password) {
+        document.getElementById('adminErrorMessage').textContent = '❌ Please enter the admin password.';
+        return;
+      }
+
+      if (password !== correctPassword) {
+        document.getElementById('adminErrorMessage').textContent = '❌ Incorrect password. Access denied.';
+        return;
+      }
+
+      // Authentication successful
+      localStorage.setItem(ADMIN_SESSION_KEY, 'true');
+      adminLoginForm.style.display = 'none';
+      adminDashboard.style.display = 'block';
+      displayAllReports();
+    }
+
+    function handleAdminLogout() {
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+      adminLoginForm.style.display = 'block';
+      adminDashboard.style.display = 'none';
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('adminErrorMessage').textContent = '';
+    }
+
+    // Department switching function
+    function switchDepartment(dept) {
+      currentDepartment = dept;
+      
+      // Update active tab
+      document.querySelectorAll('.department-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Hide all department contents
+      document.querySelectorAll('.department-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Show selected department content
+      if (dept === 'all') {
+        document.getElementById('allReports').classList.add('active');
+        displayAllReports();
+      } else if (dept === 'security') {
+        document.getElementById('securityDept').classList.add('active');
+        displayDepartmentReports('security');
+      } else if (dept === 'hr') {
+        document.getElementById('hrDept').classList.add('active');
+        displayDepartmentReports('hr');
+      } else if (dept === 'environment') {
+        document.getElementById('environmentDept').classList.add('active');
+        displayDepartmentReports('environment');
+      }
+    }
+
+    function displayAllReports() {
+      const reports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+      const reportsList = document.getElementById('reportsList');
+      const totalReports = document.getElementById('totalReports');
+      const newReports = document.getElementById('newReports');
+      const unassignedReports = document.getElementById('unassignedReports');
+
+      const submittedReports = reports.filter(r => r.action === 'report');
+      const newCount = submittedReports.filter(r => !r.viewed).length;
+      const unassignedCount = submittedReports.filter(r => !r.department || r.department === 'unassigned').length;
+
+      totalReports.textContent = submittedReports.length;
+      newReports.textContent = newCount;
+      unassignedReports.textContent = unassignedCount;
+
+      if (submittedReports.length === 0) {
+        reportsList.innerHTML = '<div class="no-reports">No reports submitted yet.</div>';
+        return;
+      }
+
+      reportsList.innerHTML = '';
+      submittedReports.reverse().forEach((report, index) => {
+        const reportItem = document.createElement('div');
+        reportItem.className = 'report-item';
+        const timestamp = new Date(report.timestamp).toLocaleString();
+        const dept = report.department || 'unassigned';
+        const deptLabel = getDepartmentLabel(dept);
+        
+        reportItem.innerHTML = `
+          <h4>📋 Report #${submittedReports.length - index}</h4>
+          <div class="report-detail"><strong>From:</strong> ${escapeHtml(report.email)}</div>
+          <div class="report-detail"><strong>Title:</strong> ${escapeHtml(report.title)}</div>
+          <div class="report-detail"><strong>Description:</strong> ${escapeHtml(report.description)}</div>
+          <div class="report-detail"><strong>Location:</strong> ${escapeHtml(report.location || 'Not specified')}</div>
+          <div class="report-detail"><strong>Submitted:</strong> ${timestamp}</div>
+          ${deptLabel}
+          <div class="report-action" onclick="assignReportDepartment(${index})">🏢 Assign Department</div>
+          <div class="report-action" onclick="markAsViewed(${index})">✓ Mark as viewed</div>
+          <div class="report-action" onclick="deleteReport(${index})">🗑️ Delete</div>
+        `;
+        reportsList.appendChild(reportItem);
+      });
+    }
+
+    function displayDepartmentReports(dept) {
+      const reports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+      const deptReports = reports.filter(r => r.action === 'report' && r.department === dept);
+      
+      const containerId = dept + 'Reports';
+      const reportsList = document.getElementById(containerId);
+      const totalId = dept + 'Total';
+      const unreviewedId = dept + 'Unreviewed';
+      
+      document.getElementById(totalId).textContent = deptReports.length;
+      document.getElementById(unreviewedId).textContent = deptReports.filter(r => !r.viewed).length;
+
+      if (deptReports.length === 0) {
+        reportsList.innerHTML = `<div class="no-reports">No ${DEPARTMENTS[dept].name} reports yet.</div>`;
+        return;
+      }
+
+      reportsList.innerHTML = '';
+      deptReports.reverse().forEach((report, reportIndex) => {
+        const reportItem = document.createElement('div');
+        reportItem.className = 'report-item';
+        const timestamp = new Date(report.timestamp).toLocaleString();
+        const status = report.status || 'pending';
+        const statusBadge = getStatusBadge(status);
+        
+        reportItem.innerHTML = `
+          <h4>${DEPARTMENTS[dept].icon} Report from ${escapeHtml(report.email)}</h4>
+          <div class="report-detail"><strong>Title:</strong> ${escapeHtml(report.title)}</div>
+          <div class="report-detail"><strong>Description:</strong> ${escapeHtml(report.description)}</div>
+          <div class="report-detail"><strong>Location:</strong> ${escapeHtml(report.location || 'Not specified')}</div>
+          <div class="report-detail"><strong>Submitted:</strong> ${timestamp}</div>
+          ${statusBadge}
+          <div class="status-section">
+            <div class="status-section-label">Update Status:</div>
+            <div class="status-selector">
+              <button class="status-btn pending" onclick="updateReportStatus(${reportIndex}, 'pending')">⏳ Pending</button>
+              <button class="status-btn in-progress" onclick="updateReportStatus(${reportIndex}, 'in-progress')">⚙️ In Progress</button>
+              <button class="status-btn resolved" onclick="updateReportStatus(${reportIndex}, 'resolved')">✅ Resolved</button>
+              <button class="status-btn closed" onclick="updateReportStatus(${reportIndex}, 'closed')">🔒 Closed</button>
+            </div>
+          </div>
+          <div class="report-action" onclick="markAsViewed(${reportIndex})">✓ Mark as viewed</div>
+          <div class="report-action" onclick="reassignReportDepartment(${reportIndex})">🔄 Reassign</div>
+          <div class="report-action" onclick="deleteReport(${reportIndex})">🗑️ Delete</div>
+        `;
+        reportsList.appendChild(reportItem);
+      });
+    }
+
+    function getDepartmentLabel(dept) {
+      if (!dept || dept === 'unassigned') {
+        return '<span class="department-label unassigned-label">⚠️ Unassigned</span>';
+      }
+      const deptInfo = DEPARTMENTS[dept];
+      if (!deptInfo) return '<span class="department-label unassigned-label">⚠️ Unassigned</span>';
+      
+      const classMap = {
+        security: 'dept-security',
+        hr: 'dept-hr',
+        environment: 'dept-environment'
+      };
+      
+      return `<span class="department-label ${classMap[dept]}">${deptInfo.icon} ${deptInfo.name}</span>`;
+    }
+
+    function assignReportDepartment(index) {
+      const reports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+      const report = reports[index];
+      
+      const deptChoice = prompt(
+        'Assign this report to a department:\n1. Security (🔒)\n2. HR (👥)\n3. Environment (🌍)\n\nEnter 1, 2, or 3:',
+        '1'
+      );
+
+      if (!deptChoice) return;
+
+      const deptMap = {
+        '1': 'security',
+        '2': 'hr',
+        '3': 'environment'
+      };
+
+      if (deptMap[deptChoice]) {
+        reports[index].department = deptMap[deptChoice];
+        localStorage.setItem(REPORTS_KEY, JSON.stringify(reports));
+        displayAllReports();
+        alert(`Report assigned to ${DEPARTMENTS[deptMap[deptChoice]].name} department!`);
+      } else {
+        alert('Invalid selection. Please enter 1, 2, or 3.');
+      }
+    }
+
+    function reassignReportDepartment(index) {
+      assignReportDepartment(index);
+    }
+
+    // Department modal authentication and display
+    let deptPanelDept = null;
+
+    function openDepartmentPanel(dept) {
+      deptPanelDept = dept;
+      const modal = document.getElementById('departmentModal');
+      document.getElementById('deptPassword').value = '';
+      document.getElementById('deptErrorMessage').textContent = '';
+      document.getElementById('deptLoginForm').style.display = 'block';
+      document.getElementById('deptDashboard').style.display = 'none';
+      document.getElementById('deptTitle').textContent = DEPARTMENTS[dept].icon + ' ' + DEPARTMENTS[dept].name + ' Panel';
+      modal.classList.add('show');
+    }
+
+    function closeDepartmentPanel() {
+      const modal = document.getElementById('departmentModal');
+      modal.classList.remove('show');
+      if (deptPanelDept) localStorage.removeItem('mtw_dept_session_' + deptPanelDept);
+      deptPanelDept = null;
+    }
+
+    function authenticateDepartment() {
+      if (!deptPanelDept) return;
+      const password = document.getElementById('deptPassword').value;
+      const key = 'mtw_dept_password_' + deptPanelDept;
+      const correct = localStorage.getItem(key);
+      if (!password) {
+        document.getElementById('deptErrorMessage').textContent = '❌ Please enter the department password.';
+        return;
+      }
+      if (password !== correct) {
+        document.getElementById('deptErrorMessage').textContent = '❌ Incorrect password. Access denied.';
+        return;
+      }
+      localStorage.setItem('mtw_dept_session_' + deptPanelDept, 'true');
+      document.getElementById('deptLoginForm').style.display = 'none';
+      document.getElementById('deptDashboard').style.display = 'block';
+      displayDepartmentModalReports(deptPanelDept);
+    }
+
+    function handleDeptLogout() {
+      if (!deptPanelDept) return;
+      localStorage.removeItem('mtw_dept_session_' + deptPanelDept);
+      document.getElementById('deptLoginForm').style.display = 'block';
+      document.getElementById('deptDashboard').style.display = 'none';
+      document.getElementById('deptPassword').value = '';
+    }
+
+    function displayDepartmentModalReports(dept) {
+      const allReports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+      // keep original indexes so actions can modify correct item
+      const indexed = allReports.map((r, i) => ({ r, i }));
+      const deptReports = indexed.filter(x => x.r.action === 'report' && x.r.department === dept);
+      const reportsList = document.getElementById('deptReportsList');
+      if (deptReports.length === 0) {
+        reportsList.innerHTML = `<div class="no-reports">No ${DEPARTMENTS[dept].name} reports yet.</div>`;
+        return;
+      }
+      reportsList.innerHTML = '';
+      deptReports.reverse().forEach(item => {
+        const report = item.r;
+        const origIndex = item.i;
+        const timestamp = new Date(report.timestamp).toLocaleString();
+        const status = report.status || 'pending';
+        const statusBadge = getStatusBadge(status);
+        const reportItem = document.createElement('div');
+        reportItem.className = 'report-item';
+        reportItem.innerHTML = `
+          <h4>${DEPARTMENTS[dept].icon} Report from ${escapeHtml(report.email)}</h4>
+          <div class="report-detail"><strong>Title:</strong> ${escapeHtml(report.title)}</div>
+          <div class="report-detail"><strong>Description:</strong> ${escapeHtml(report.description)}</div>
+          <div class="report-detail"><strong>Location:</strong> ${escapeHtml(report.location || 'Not specified')}</div>
+          <div class="report-detail"><strong>Submitted:</strong> ${timestamp}</div>
+          ${statusBadge}
+          <div class="status-section">
+            <div class="status-section-label">Update Status:</div>
+            <div class="status-selector">
+              <button class="status-btn pending" onclick="updateReportStatus(${origIndex}, 'pending')">⏳ Pending</button>
+              <button class="status-btn in-progress" onclick="updateReportStatus(${origIndex}, 'in-progress')">⚙️ In Progress</button>
+              <button class="status-btn resolved" onclick="updateReportStatus(${origIndex}, 'resolved')">✅ Resolved</button>
+              <button class="status-btn closed" onclick="updateReportStatus(${origIndex}, 'closed')">🔒 Closed</button>
+            </div>
+          </div>
+          <div class="report-action" onclick="markAsViewed(${origIndex})">✓ Mark as viewed</div>
+          <div class="report-action" onclick="reassignReportDepartment(${origIndex})">🔄 Reassign</div>
+          <div class="report-action" onclick="deleteReport(${origIndex})">🗑️ Delete</div>
+        `;
+        reportsList.appendChild(reportItem);
+      });
+    }
+
+    function markAsViewed(index) {
+      const reports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+      if (reports[index]) {
+        reports[index].viewed = true;
+        localStorage.setItem(REPORTS_KEY, JSON.stringify(reports));
+        // Refresh the current view
+        if (currentDepartment === 'all') {
+          displayAllReports();
+        } else {
+          displayDepartmentReports(currentDepartment);
+        }
+      }
+    }
+
+    function deleteReport(index) {
+      if (confirm('Are you sure you want to delete this report?')) {
+        const reports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+        reports.splice(index, 1);
+        localStorage.setItem(REPORTS_KEY, JSON.stringify(reports));
+        // Refresh the current view
+        if (currentDepartment === 'all') {
+          displayAllReports();
+        } else {
+          displayDepartmentReports(currentDepartment);
+        }
+      }
+    }
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    function getStatusBadge(status) {
+      const statusMap = {
+        pending: { icon: '⏳', label: 'Pending', class: 'status-pending' },
+        'in-progress': { icon: '⚙️', label: 'In Progress', class: 'status-in-progress' },
+        resolved: { icon: '✅', label: 'Resolved', class: 'status-resolved' },
+        closed: { icon: '🔒', label: 'Closed', class: 'status-closed' }
+      };
+
+      const statusInfo = statusMap[status] || statusMap['pending'];
+      return `<div class="status-badge ${statusInfo.class}">${statusInfo.icon} ${statusInfo.label}</div>`;
+    }
+
+    function updateReportStatus(index, newStatus) {
+      const reports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+      
+      if (reports[index]) {
+        reports[index].status = newStatus;
+        reports[index].statusUpdatedAt = new Date().toISOString();
+        localStorage.setItem(REPORTS_KEY, JSON.stringify(reports));
+        
+        // Refresh the current view
+        if (currentDepartment === 'all') {
+          displayAllReports();
+        } else {
+          displayDepartmentReports(currentDepartment);
+        }
+        
+        const statusLabel = {
+          pending: 'Pending',
+          'in-progress': 'In Progress',
+          resolved: 'Resolved',
+          closed: 'Closed'
+        }[newStatus] || 'Pending';
+        
+        alert(`✅ Report status updated to: ${statusLabel}`);
+      }
+    }
+
+    // Function to save report from index.html
+    function saveReport(reportData) {
+      const reports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+      reportData.timestamp = new Date().toISOString();
+      reportData.viewed = false;
+      reportData.status = 'pending'; // Initialize with pending status
+      reports.push(reportData);
+      localStorage.setItem(REPORTS_KEY, JSON.stringify(reports));
+    }
+  </script>
+</body>
+</html>
